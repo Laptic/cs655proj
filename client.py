@@ -2,7 +2,7 @@ import socket
 
 MESSAGE = b"Hello, World!"
 
-class Client:
+class ClientWlp:
     def __init__(self, host, port):
         self.host = host
         self.port = port
@@ -13,5 +13,5 @@ class Client:
         sock.sendto(msg, (self.host, self.port))
 
 if __name__ == "__main__":
-    client = Client("127.0.0.1", 5005)
+    client = ClientWlp("192.168.2.1", 5005)
     client.sendMsg(MESSAGE)

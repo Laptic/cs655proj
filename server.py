@@ -1,3 +1,4 @@
+from multiprocessing import Process, Queue
 import socket
 
 class Server:
@@ -12,6 +13,16 @@ class Server:
             data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
             print("received message: %s" % data)
 
-if __name__ == "__main__":
-    server = Server("127.0.0.1", 5005)
+def serverWlp2s0():
+    server = Server("192.168.2.1", 5005)
     server.receive()
+
+def serverWlp4s0():
+    server = Server("192.168.2.1", 5005)
+    server.receive()
+
+if __name__ == "__main__":
+    proc1 = Process(target=serverWlp2s0)
+    proc2 = Process(target=serverWlp4s0)
+    proc1.start()
+    proc2.start()
